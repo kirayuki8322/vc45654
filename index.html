@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="./favicons/favicon.ico">
+    <title>Proximity VC in Mcbe</title>
+</head>
+<body>
+    <div id="content">
+        <!-- English content -->
+        <div class="language-content" id="english">
+            <header>
+                <h1 class="header-text">Proximity VC in Mcbe</h1>
+            </header>
+            <p id="id-disp">ID: <span id="my-id"></span></p>
+            <p id="name-disp">GamerTag: <span id="my-name"></span></p>
+            <p id="Menber-disp">Participants: <span id="Members">undefined</span></p>
+            <div>
+                GamerTag: <input id="user-name" type="text" />
+                <button id="join" class="join-btn">Connect</button>
+            </div>
+            <button id="NonMute-btn" oncontextmenu="return false;">Mute ON/OFF</button>
+            <p id="MuteInfo">Not connected</p>
+            <p><button id="leave" class="leave-btn">Leave</button></p>
+            <div id="button-area"></div>
+            <div id="remote-media-area"></div>
+            <div>
+                <h2>Participant List</h2>
+                <ul id="participant-list"></ul>
+            </div>
+        </div>
+
+        <!-- Japanese content -->
+        <div class="language-content" id="japanese">
+            <header>
+                <h1 class="header-text">近接VC in Mcbe</h1>
+            </header>
+            <p id="id-disp-jp">ID: <span id="my-id-jp"></span></p>
+            <p id="name-disp-jp">ゲーマータグ: <span id="my-name-jp"></span></p>
+            <p id="Menber-disp-jp">参加人数: <span id="Members-jp">不明</span></p>
+            <div>
+                ゲーマータグ: <input id="user-name-jp" type="text" />
+                <button id="join-jp" class="join-btn">接続する</button>
+            </div>
+            <button id="NonMute-btn-jp" oncontextmenu="return false;">ミュートON/OFF</button>
+            <p id="MuteInfo-jp">接続されていません</p>
+            <p><button id="leave-jp" class="leave-btn">退出</button></p>
+            <div id="button-area-jp"></div>
+            <div id="remote-media-area-jp"></div>
+            <div>
+                <h2>参加者リスト</h2>
+                <ul id="participant-list-jp"></ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ブラウザの言語設定を取得
+            const userLang = navigator.language || navigator.userLanguage;
+            let language = userLang.includes('ja') ? 'japanese' : 'english'; // 日本語なら'japanese'、それ以外は'english'
+
+            // すべての言語コンテンツを非表示にする
+            const contents = document.querySelectorAll('.language-content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // 選択した言語のコンテンツを表示
+            document.getElementById(language).style.display = 'block';
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@skyway-sdk/room/dist/skyway_room-latest.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
